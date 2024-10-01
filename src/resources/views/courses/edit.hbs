@@ -1,0 +1,18 @@
+<div class="container">
+    <h3>Edit User</h3>
+    <form method="POST" action="/courses/{{user._id}}?_method=PUT">
+        <div class="mb-3">
+            <label for="input-name" class="form-label">Name</label>
+            <input type="text" value="{{user.name}}" class="form-control" id="input-name" name="name">
+        </div>
+        <div class="mb-3">
+            <label for="input-description" class="form-label">Description</label>
+            <textarea type="text" class="form-control" id="input-description" name="description">{{user.description}}</textarea>
+        </div>
+        <div class="mb-3">
+            <label for="input-image" class="form-label">Image</label>
+            <input type="text" value="{{user.image}}" class="form-control" id="input-image" name="image">
+        </div>
+        <button type="submit" class="btn btn-primary">Save</button>
+    </form>
+</div>

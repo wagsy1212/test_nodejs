@@ -1,0 +1,10 @@
+h1 {
+  color: red; }
+
+.img-user {
+  width: 50px;
+  height: 50px; }
+
+.img-user img {
+  width: 100%;
+  height: 100%; }
