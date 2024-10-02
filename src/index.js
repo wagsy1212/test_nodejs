@@ -40,8 +40,8 @@ const START_SERVER = () => {
     // route(app);
     app.get('/', async (req, res, next) => {
         Board.find({})
-            .then(courses => res.render('home', {
-                courses: multipleMongooseToObject(courses)
+            .then(courses => res.json({
+                courses
             }))
             .catch(next)
     })
