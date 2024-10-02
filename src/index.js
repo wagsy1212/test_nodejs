@@ -6,6 +6,7 @@ const route = require('./routes');
 const Board = require('./app/model/Board');
 const { multipleMongooseToObject } = require('./util/mongoose');
 const { CONNECT_DB, GET_DB, connectToMongoDB } = require('./config/mongodb');
+const path = require('path');
 // import express from 'express';
 // import morgan from 'morgan';
 // import { engine } from 'express-handlebars';
@@ -28,7 +29,8 @@ const START_SERVER = () => {
         }
     }));
     app.set('view engine', '.hbs');
-    app.set('views', './src/resources/views');
+    // app.set('views', './src/resources/views');
+    app.set('views', path.join(__dirname, 'resources', 'views'));
 
     app.use(express.json());
     app.use(express.urlencoded({ extended: true }));
@@ -40,8 +42,8 @@ const START_SERVER = () => {
     // route(app);
     app.get('/', async (req, res, next) => {
         Board.find({})
-            .then(courses => res.json({
-                courses
+            .then(courses => res.render('home', {
+                courses: multipleMongooseToObject(courses)
             }))
             .catch(next)
     })
