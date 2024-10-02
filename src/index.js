@@ -3,6 +3,8 @@ const morgan = require('morgan');
 const methodOverride = require('method-override');
 const { engine } = require('express-handlebars');
 const route = require('./routes');
+const Board = require('./app/model/Board');
+const { multipleMongooseToObject } = require('./util/mongoose');
 const { CONNECT_DB, GET_DB, connectToMongoDB } = require('./config/mongodb');
 // import express from 'express';
 // import morgan from 'morgan';
@@ -35,7 +37,14 @@ const START_SERVER = () => {
     app.use(methodOverride('_method'))
 
     // route init
-    route(app);
+    // route(app);
+    app.get('/', async (req, res, next) => {
+        Board.find({})
+            .then(courses => res.render('home', {
+                courses: multipleMongooseToObject(courses)
+            }))
+            .catch(next)
+    })
 
     app.get('/mongodb', async (req, res) => {
         // console.log(await GET_DB().listCollections().toArray());
