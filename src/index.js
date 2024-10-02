@@ -16,7 +16,7 @@ const START_SERVER = () => {
     const port = 3000;
 
     // Path Image
-    app.use(express.static('./src/public'));
+    app.use(express.static(path.join(__dirname, '/public')));
 
     // HTTP logger
     app.use(morgan('combined'));
