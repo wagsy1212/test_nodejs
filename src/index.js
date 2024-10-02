@@ -39,14 +39,14 @@ const START_SERVER = () => {
     app.use(methodOverride('_method'))
 
     // route init
-    // route(app);
-    app.get('/', async (req, res, next) => {
-        Board.find({})
-            .then(courses => res.render('home', {
-                courses: multipleMongooseToObject(courses)
-            }))
-            .catch(next)
-    })
+    route(app);
+    // app.get('/', async (req, res, next) => {
+    //     Board.find({})
+    //         .then(courses => res.render('home', {
+    //             courses: multipleMongooseToObject(courses)
+    //         }))
+    //         .catch(next)
+    // })
 
     app.get('/mongodb', async (req, res) => {
         // console.log(await GET_DB().listCollections().toArray());
